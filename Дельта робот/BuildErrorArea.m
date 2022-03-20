@@ -149,7 +149,7 @@ for i = 1:quaOfInterval
 end
 PointsInterval = PointsInterval(1:largestMax, :, :);
 
-save('matlab_deltarobot errorspace.mat', 'PointsInterval', 'quaOfPointsInterval', 'PointsError', 'quaOfPointsError', 'quaOfInterval');
+save('matlab_deltarobot errorspace.mat', 'PointsInterval', 'quaOfPointsInterval', 'PointsError', 'quaOfPointsError', 'quaOfInterval', 'colorOfInterval');
 
 
 plot3(0, 0, 0, '.');

@@ -1,4 +1,23 @@
 clc; clear; close all;
+%%
+clc; clear; close all;
+%отображение поля точек манипулятора 1 из сохранённого mat
+load('matlab_rob1 workspaceUpd.mat');
+plot3(Points(:,1), Points(:,2), Points(:,3), '.');
+
+%%
+clc; clear; close all;
+%отображение поля точек манипулятора 2 из сохранённого mat
+load('matlab_rob2 workspaceUpd.mat');
+plot3(Points(:,1), Points(:,2), Points(:,3), '.');
+
+%%
+clc; clear; close all;
+%отображение поля точек манипулятора 3 из сохранённого mat
+load('matlab_rob3 workspaceUpd.mat');
+plot3(Points(:,1), Points(:,2), Points(:,3), '.');
+
+%%
 % %----------------
 % %данная часть для проверки правильности составления манипулятора
 % %задание углов поворота
@@ -43,11 +62,7 @@ save('matlab_rob2 workspaceNewUpd.mat', 'Points');
 Points = Manipulator3_workspace(2);
 save('matlab_rob3 workspaceNewUpd.mat', 'Points');
 
-%%
-clc; clear; close all;
-%отображение поля точек
-load('matlab_rob2 workspaceUpd.mat');
-plot3(Points(:,1), Points(:,2), Points(:,3), '.');
+
 
 %%
 %для сохранения большого колиества точек
