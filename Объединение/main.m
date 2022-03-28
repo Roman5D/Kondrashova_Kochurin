@@ -1,9 +1,23 @@
+%вывод объединённых зон из mat
+clc; clear; close all;
+load('.\mat\coop workspace.mat');
+
+figure;
+hold on;
+
+trisurf(K, PointsDelta(:, 1), PointsDelta(:, 2), PointsDelta(:, 3), 'Facecolor', 'red', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+
+plot3(PointsManipul(:, 1), PointsManipul(:, 2), PointsManipul(:, 3), '.g');
+
+hold off;
+
+%%
 %достаём необходимые файлы из других папок
 clc; clear; close all;
 
 
 %%
-%
+%Расчёт и сохранение совмещённых зон
 clc; clear; %close all;
 %---------
 load('.\mat\matlab_deltarobot workspace.mat');
@@ -49,6 +63,8 @@ trisurf(K, PointsDelta(:, 1), PointsDelta(:, 2), PointsDelta(:, 3), 'Facecolor',
 
 % plot3(PointsDelta(:, 1), PointsDelta(:, 2), PointsDelta(:, 3), '.b');
 plot3(PointsManipul(:, 1), PointsManipul(:, 2), PointsManipul(:, 3), '.g');
+
+save('.\mat\coop workspace.mat', 'PointsDelta', 'PointsManipul', 'K');
 
 % plot3(0, 0, 0, '.k');
 hold off;
