@@ -1,17 +1,15 @@
+%%
 % прямая кинематика: (theta(1), theta(2), theta(3)) -> (x0, y0, z0)
 % возвращаемый статус: 0=OK, -1=несуществующая позиция
-function[boolean, coordinates] =DirectTask(theta)
-e = 0.040; %сторона подвижной платформы
-f = 0.200; %сторона неподвижной платформы
-re = 0.100; % длина звена подвижная платформа - шарнир
-rf = 0.025; % длина звена неподвижная платформа - шарнир
+function[boolean, coordinates1, coordinates2] = DirectTask(theta)
+e = 0.040*1; %сторона подвижной платформы
+f = 0.200*1; %сторона неподвижной платформы
+re = 0.100*1; % длина звена подвижной платформы
+rf = 0.025*1; % длина звена неподвижной платформы
 
-sqrt3 = sqrt(3.0);
-sin120 = sqrt3/2.0;
-cos120 = -0.5;
-tan60 = sqrt3;
-sin30 = 0.5;
-tan30 = 1/sqrt3;
+sin30 = sin(pi/6);
+tan30 = tan(pi/6);
+tan60 = tan(pi/3);
 
 t = (f-e)*tan30/2;
 
@@ -48,20 +46,32 @@ c = (b2-y1*dnm)*(b2-y1*dnm) + b1*b1 + dnm*dnm*(z1*z1 - re*re);
 % дискриминант
 d = b*b - 4.0*a*c;
 if (d < 0)
-    coordinates(1) = 0;
-    coordinates(2) = 0;
-    coordinates(3) = 0;
+    coordinates1(1) = 0;
+    coordinates1(2) = 0;
+    coordinates1(3) = 0;
+    coordinates2(1) = 0;
+    coordinates2(2) = 0;
+    coordinates2(3) = 0;
     
-    boolean = -1; % несуществующая позиция
+    boolean = 0; % несуществующая позиция
 else
     z0 = -0.5*(b+sqrt(d))/a;
     x0 = (a1*z0 + b1)/dnm;
     y0 = (a2*z0 + b2)/dnm;
-    coordinates(1) = x0;
-    coordinates(2) = y0;
-    coordinates(3) = z0;
-
-    boolean = 0;
+    
+    coordinates1(1) = x0;
+    coordinates1(2) = y0;
+    coordinates1(3) = z0;
+    
+    z0 = -0.5*(b-sqrt(d))/a;
+    x0 = (a1*z0 + b1)/dnm;
+    y0 = (a2*z0 + b2)/dnm;
+    
+    coordinates2(1) = x0;
+    coordinates2(2) = y0;
+    coordinates2(3) = z0;
+    
+    boolean = 1; % существующая позиция
 end
 end
 

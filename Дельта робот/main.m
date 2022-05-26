@@ -1,15 +1,15 @@
 %%
 %вывод рабочей зоны и карты ошибок из сохранённого mat
 clc; clear; close all;
-load('.\mat\matlab_deltarobot workspace.mat');
+load('.\mat\matlab_deltarobot workSpace.mat');
 figure;
 hold on;
 plot3(Points(:, 1), Points(:, 2), Points(:, 3), '.');
 plot3(0, 0, 0, '.k');
 hold off;
 
-%вывод карты ошибок из сохранённого mat
-load('.\mat\matlab_deltarobot errorspace.mat');
+clc; clear; close all;
+load('.\mat\matlab_deltarobot errorSpace.mat');
 figure;
 hold on
 
@@ -25,31 +25,20 @@ end
 legend;
 plot3(0, 0, 0, '.k', 'DisplayName', 'Origin');
 hold off;
+clc; clear;
 
 %%
-%построение, сохранение и вывод рабочей зоны дельтаробота
+%построение и сохранение рабочей зоны дельтаробота
 clc; clear; close all;
 path ('.\src',path);
 BuildWorkArea();
 rmpath ('.\src');
+clc; clear; close all;
 
-%построение, сохранение и вывод карты ошибок дельтаробота
+%%
+%построение и сохранение карты ошибок дельтаробота
 clc; clear; close all;
 path ('.\src',path);
 BuildErrorArea();
 rmpath ('.\src');
-
-%%
-clc; clear;
-load('.\mat\matlab_deltarobot errorspaceDebug.mat');
-figure;
-hold on;
-plot3(Points(numberMaxMistake, 1), Points(numberMaxMistake, 2), Points(numberMaxMistake, 3), '.g');
-plot3(coordinateMaxMistake(1), coordinateMaxMistake(2), coordinateMaxMistake(3), '.r');
-hold off;
-
-figure;
-hold on;
-plot3(Points(numberMinMistake, 1), Points(numberMinMistake, 2), Points(numberMinMistake, 3), '.g');
-plot3(coordinateMinMistake(1), coordinateMinMistake(2), coordinateMinMistake(3), '.r');
-hold off;
+clc; clear; close all;

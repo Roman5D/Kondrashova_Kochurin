@@ -1,17 +1,18 @@
 %рабочая зона для дельта робота
 function[] = BuildWorkArea()
-q_max = [
-        180     * (2*pi/360)
-        180     * (2*pi/360)
-        180     * (2*pi/360)
-        ];
 
 q_min = [
-        -180    * (2*pi/360)
-        -180    * (2*pi/360)
-        -180    * (2*pi/360)
+        -0    * (pi/180)
+        -0    * (pi/180)
+        -0    * (pi/180)
         ];
 
+q_max = [
+        120     * (pi/180)
+        120     * (pi/180)
+        120     * (pi/180)
+        ];
+    
 %разделить на .. промежутков
 numberInterval = [
                 60
@@ -37,8 +38,8 @@ for counter1 = 1:numberInterval(1)
         q(2) = q_min(2) + q_delta(2) * counter2;
         for counter3 = 1:numberInterval(3)
             q(3) = q_min(3) + q_delta(3) * counter3;
-            [flaq, tempCoordinates] = DirectTask(q);
-            if (flaq == 0)
+            [flaq, tempCoordinates, waste] = DirectTask(q);
+            if (flaq == 1)
                 quaOfPoint = quaOfPoint + 1;
                 Points(quaOfPoint, :) = tempCoordinates(:);          
             end
@@ -49,7 +50,7 @@ end
 %отбрасывание нулевых точек
 Points = Points(1:quaOfPoint, :);
 
-save('mat\matlab_deltarobot workspace.mat', 'Points');
+save('.\mat\matlab_deltarobot workSpace.mat', 'Points');
 
 % plot3(Points(:,1), Points(:,2), Points(:,3), '.');
 
