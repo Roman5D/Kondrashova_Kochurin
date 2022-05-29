@@ -1,5 +1,6 @@
 %%
 %отображение рабочих пространств манипуляторов без учёта платформы
+%отображение поля точек манипулятора 1 из сохранённого mat
 clc; clear; close all;
 load('.\mat\matlab_rob1 workspace.mat');
 figure;
@@ -19,6 +20,7 @@ plot3(Points(:,1), Points(:,2), Points(:,3), '.');
 title('Manipulator 3 Without Platform');
 
 %отображение рабочих пространств манипуляторов с учётом платформы
+%отображение поля точек манипулятора 1 из сохранённого mat
 load('.\mat\matlab_rob1 workspaceUpd.mat');
 figure;
 plot3(Points(:,1), Points(:,2), Points(:,3), '.');
@@ -36,6 +38,9 @@ figure;
 plot3(Points(:,1), Points(:,2), Points(:,3), '.');
 title('Manipulator 3 With Platform');
 
+%//////////////////////////
+%для расчёта нового
+%//////////////////////////
 %%
 %вычитание графиков маниуплятора 1
 clc; clear; close all;
@@ -83,14 +88,13 @@ hold off;
 title('Manipulator 1 With + Delta');
 
 %%
-%построение поля точек всех манипуляторов без учёта платформы
+%построение и сохранение поля точек всех манипуляторов без учёта платформы
 clc; clear; close all;
 path ('.\src',path);
 
 Points = Manipulator1_workspace(0);
 save('.\mat\matlab_rob1 workspace.mat', 'Points');
 
-%%
 Points = Manipulator2_workspace(0);
 save('.\mat\matlab_rob2 workspace.mat', 'Points');
 
@@ -100,14 +104,13 @@ save('.\mat\matlab_rob3 workspace.mat', 'Points');
 rmpath ('.\src');
 
 %%
-%построение поля точек всех манипуляторов с учетом платформы
+%построение и сохранение поля точек всех манипуляторов с учетом платформы
 clc; clear; close all;
 path ('.\src',path);
 
 Points = Manipulator1_workspace(1);
 save('.\mat\matlab_rob1 workspaceUpd.mat', 'Points');
 
-%%
 Points = Manipulator2_workspace(1);
 save('.\mat\matlab_rob2 workspaceUpd.mat', 'Points');
 
@@ -115,9 +118,3 @@ Points = Manipulator3_workspace(1);
 save('.\mat\matlab_rob3 workspaceUpd.mat', 'Points');
 
 rmpath ('.\src');
-
-
-%%
-%какие-то улучшения
-[K] = boundary(Points);
-trisurf(K, Points(:, 1), Points(:, 2), Points(:, 3), 'Facecolor', 'red', 'FaceAlpha', 1, 'LineStyle', 'none');
